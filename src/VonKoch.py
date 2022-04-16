@@ -61,7 +61,14 @@ class VonKoch:
             self._draw_four_lines(side/3, level-1)
 
     def display(self):
-        pass
+        self.canvas.delete(tk.ALL)
+        level = int(self.level.get().strip())
+        side = int(self.side.get().strip())
+        self.currentPoint = Point(200, 150)
+        self.angle = 0
+        for i in range(1, 4):
+            self._draw_four_lines(side, level)
+            self._right(120)
 
 
 def main():
