@@ -2,6 +2,7 @@
 import tkinter as tk
 import math
 
+PI = math.pi
 
 class Point:
     def __init__(self, x, y):
@@ -31,13 +32,33 @@ class VonKoch:
         window.mainloop()
 
     def _right(self, x):
-        pass
+        self.angle += x
 
     def _left(self, x):
-        pass
+        self.angle -= x
 
     def _draw_four_lines(self, side, level):
-        pass
+        if level == 0:
+            self.point.x = (
+                int(math.cos(self.angle*PI/180)*side) + self.currentPoint.x
+            )
+            self.point.y = (
+                int(math.sin(self.angle*PI/180)*side) + self.currentPoint.y
+            )
+            self.canvas.create_line(
+                self.currentPoint.x, self.currentPoint.y,
+                self.point.x, self.point.y
+            )
+            self.currentPoint.x = self.point.x
+            self.currentPoint.y = self.point.y
+        else:
+            self._draw_four_lines(side/3, level-1)
+            self._left(60)
+            self._draw_four_lines(side/3, level-1)
+            self._right(120)
+            self._draw_four_lines(side/3, level-1)
+            self._left(60)
+            self._draw_four_lines(side/3, level-1)
 
     def display(self):
         pass
