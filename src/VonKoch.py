@@ -18,7 +18,7 @@ class VonKoch:
         window = tk.Tk()
         window.title("Von Koch snowflake")
         self.canvas = tk.Canvas(window, width=600, height=400)
-        self.canvas.config(background="yellow")
+        self.canvas.config(background="black")
         self.canvas.pack()
 
         frame = tk.Frame(window);
@@ -27,7 +27,8 @@ class VonKoch:
         self.side = tk.StringVar(value="200")
         tk.Label(frame, text="Level").pack(side=tk.LEFT)
         tk.Entry(frame, textvariable=self.level).pack(side=tk.LEFT)
-        tk.Label(frame, text=self.side).pack(side=tk.LEFT)
+        tk.Label(frame, text="Side").pack(side=tk.LEFT)
+        tk.Entry(frame, textvariable=self.side).pack(side=tk.LEFT)
         tk.Button(frame, text="draw", command=self.display).pack(side=tk.LEFT)
         window.mainloop()
 
@@ -47,7 +48,7 @@ class VonKoch:
             )
             self.canvas.create_line(
                 self.currentPoint.x, self.currentPoint.y,
-                self.point.x, self.point.y
+                self.point.x, self.point.y, fill="green"
             )
             self.currentPoint.x = self.point.x
             self.currentPoint.y = self.point.y
